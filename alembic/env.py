@@ -12,7 +12,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 from database import Base
-from models import User, Course, Enrollment, Lesson, Schedule, Badge, UserBadge, Certificate, PersonalGoal, LeaderboardEntry, Portfolio, ActivityLog 
+from models import Holiday
 
 
 load_dotenv()
