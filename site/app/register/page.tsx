@@ -66,6 +66,7 @@ export default function RegisterPage() {
     } catch (error) {
       setErrorMessage("Ошибка соединения. Проверьте подключение к интернету.");
     }
+    
   };
 
   if (!mounted) {
