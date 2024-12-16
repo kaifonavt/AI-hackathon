@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, JSON, DateTime, Float
+from sqlalchemy import Column, Integer, String, JSON, DateTime, Float, Time
 from sqlalchemy.ext.mutable import MutableDict
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.dialects.postgresql import JSONB
@@ -48,3 +48,17 @@ class User(Base):
     password = Column(String, nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+
+class Restaurant(Base):
+    __tablename__ = 'restaurants'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    address = Column(String, nullable=False)
+    menu = Column(JSON, nullable=False)
+    schedule_open = Column(Time, nullable=False)
+    schedule_close = Column(Time, nullable=False)
+
+    def __repr__(self):
+        return f"<Restaurant(name='{self.name}', address='{self.address}')>"

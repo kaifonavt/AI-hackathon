@@ -34,9 +34,9 @@
                     "type": "string",
                     "description": "Name of the guest"
                   },
-                  "phone": {
+                  "telegram_id": {
                     "type": "string",
-                    "description": "Phone number of the guest"
+                    "description": "telegram id of the guest"
                   }
                 },
                 "additionalProperties": false,
