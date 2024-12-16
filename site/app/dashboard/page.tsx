@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { titleFont, textFont } from '@/app/fonts';
 import { useRouter } from 'next/navigation';
 
-const BACKEND_URL = process.env.BACKEND_URL;
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
 
 type Holiday = {
   id: number;
