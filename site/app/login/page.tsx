@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";  // Make sure this import is present
 import { titleFont, textFont } from "@/app/fonts";
 
 const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { setIsLoggedIn, verifyToken } = useAuth();  // Get these from useAuth
   const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -36,11 +38,12 @@ export default function LoginPage() {
         const { access_token } = data;
 
         localStorage.setItem("access_token", access_token);
-        console.log("Saved token:", access_token);
-
-        console.log("Before redirect");
+        
+        // Update auth state
+        await verifyToken();  // This will verify the token and set isLoggedIn
+        setIsLoggedIn(true); // Explicitly set logged in state
+        
         router.push("/dashboard");
-        console.log("After redirect");
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || "Ошибка авторизации.");

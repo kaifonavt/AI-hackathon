@@ -1,22 +1,26 @@
 'use client';
-
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import { Menu, X } from 'lucide-react';
 import { titleFont, textFont } from '@/app/fonts';
 
 const Navigation = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const router = useRouter();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    setIsLoggedIn(false);
+    router.push('/login');
+  };
 
   const navLinks = [
     { href: "/dashboard", label: "Home" },
     { href: "/dashboard/restaraunts", label: "Restaraunts" },
     { href: "/dashboard/courses", label: "Courses" },
-    isLoggedIn 
-      ? { href: "/dashboard/profile", label: "Profile" }
-      : { href: "/login", label: "Login" }
   ];
 
   return (
@@ -25,8 +29,8 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className={`text-3xl font-bold text-white ${titleFont.className}`}
             >
               #NotSecretSanta
@@ -44,6 +48,21 @@ const Navigation = () => {
                 {link.label}
               </Link>
             ))}
+            {isLoggedIn ? (
+              <button
+                onClick={handleLogout}
+                className="text-white hover:text-pink-400 transition"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                href="/login"
+                className={`text-white hover:text-pink-400 transition ${textFont.className}`}
+              >
+                Login
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -76,6 +95,25 @@ const Navigation = () => {
                   {link.label}
                 </Link>
               ))}
+              {isLoggedIn ? (
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`text-white hover:text-pink-400 transition block px-3 py-2 w-full text-left ${textFont.className}`}
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  className={`text-white hover:text-pink-400 transition block px-3 py-2 ${textFont.className}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Login
+                </Link>
+              )}
             </div>
           </div>
         )}
