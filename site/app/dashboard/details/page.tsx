@@ -155,13 +155,6 @@ export default function HolidayDetailsPage() {
   return (
     <div
       className={`min-h-screen py-12 px-4 sm:px-6 lg:px-8 ${textFont.className}`}
-      style={{
-        backgroundImage: 'url("/images/main_back.png")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-      }}
     >
       <div className="max-w-4xl mx-auto">
         <h1 className={`text-4xl text-white text-center mb-8 ${titleFont.className}`}>
