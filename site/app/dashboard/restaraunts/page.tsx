@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { titleFont, textFont } from '@/app/fonts';
 
-const BACKEND_URL = process.env.BACKEND_URL;
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
 
 type Restaurant = {
   id: number;
@@ -14,8 +14,8 @@ type Restaurant = {
     Цена: number;
     Описание?: string;
   }>>>;
-  "schedule-open": string;
-  "schedule-close": string;
+  "schedule_open": string;
+  "schedule_close": string;
 };
 
 export default function RestaurantsPage() {
@@ -28,7 +28,7 @@ export default function RestaurantsPage() {
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
-        const response = await fetch(`${BACKEND_URL}/restaurants`);
+        const response = await fetch(`${BACKEND_URL}/restaurant`);
         if (response.ok) {
           const data = await response.json();
           setRestaurants(data);
@@ -88,7 +88,7 @@ export default function RestaurantsPage() {
                     </p>
                   </div>
                   <span className="px-3 py-1 rounded-full text-sm bg-purple-500/20 text-purple-300">
-                    {formatTime(restaurant["schedule-open"])} - {formatTime(restaurant["schedule-close"])}
+                    {formatTime(restaurant["schedule_open"])} - {formatTime(restaurant["schedule_close"])}
                   </span>
                 </div>
 
