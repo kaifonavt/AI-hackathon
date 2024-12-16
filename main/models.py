@@ -4,6 +4,8 @@ from sqlalchemy.orm import declarative_base
 from sqlalchemy.dialects.postgresql import JSONB
 from datetime import datetime
 from database import Base
+from sqlalchemy.sql import func
+
 
 class Holiday(Base):
     __tablename__ = 'holidays'
@@ -35,3 +37,14 @@ class Holiday(Base):
     #         {"name": "Петр", "phone": "+7777777777"}
     #     ]
     # }
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, autoincrement=True, index=True)
+    username = Column(String, unique=True, nullable=False, index=True)
+    email = Column(String, unique=True, nullable=False)
+    password = Column(String, nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())

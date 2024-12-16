@@ -1,0 +1,67 @@
+{
+    "name": "Holiday",
+    "description": "Represents a holiday event with associated data.",
+    "strict": true,
+    "parameters": {
+      "type": "object",
+      "required": [
+        "theme",
+        "guests_count",
+        "guests",
+        "details",
+        "location_address"
+      ],
+      "properties": {
+        "theme": {
+          "type": "string",
+          "description": "The theme of the holiday"
+        },
+        "guests_count": {
+          "type": "number",
+          "description": "Number of guests attending the holiday"
+        },
+        "guests": {
+          "type": "object",
+          "description": "A dictionary storing guest information",
+          "properties": {
+            "guest_list": {
+              "type": "array",
+              "description": "List of guests",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the guest"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Phone number of the guest"
+                  }
+                },
+                "additionalProperties": false,
+                "required": [
+                  "name",
+                  "phone"
+                ]
+              }
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "guest_list"
+          ]
+        },
+        "details": {
+          "type": "string",
+          "description": "Additional details about the holiday"
+        },
+        "location_address": {
+          "type": "string",
+          "description": "Address where the holiday takes place",
+          "nullable": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
