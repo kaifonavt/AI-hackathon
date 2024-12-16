@@ -12,7 +12,7 @@ const Navigation = () => {
 
   const navLinks = [
     { href: "/dashboard", label: "Home" },
-    { href: "/dashboard/schedule", label: "Schedule" },
+    { href: "/dashboard/restaraunts", label: "Restaraunts" },
     { href: "/dashboard/courses", label: "Courses" },
     isLoggedIn 
       ? { href: "/dashboard/profile", label: "Profile" }

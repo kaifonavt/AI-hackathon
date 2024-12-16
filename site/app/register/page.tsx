@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { titleFont, textFont } from '@/app/fonts';
 
-const BACKEND_URL = process.env.BACKEND_URL;
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -66,6 +66,7 @@ export default function RegisterPage() {
     } catch (error) {
       setErrorMessage("Ошибка соединения. Проверьте подключение к интернету.");
     }
+
   };
 
   if (!mounted) {
@@ -75,13 +76,6 @@ export default function RegisterPage() {
   return (
     <div
       className={`min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 ${textFont.className}`}
-      style={{
-        backgroundImage: 'url("/images/main_back.png")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-      }}
     >
       <div className="w-full max-w-md">
         <div className="backdrop-blur-sm bg-purple-950/30 rounded-xl border border-purple-500/20 p-8">

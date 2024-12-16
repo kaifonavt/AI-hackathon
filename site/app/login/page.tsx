@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { titleFont, textFont } from "@/app/fonts";
 
-const BACKEND_URL = process.env.BACKEND_URL;
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:8000";
 
 export default function LoginPage() {
   const router = useRouter();
