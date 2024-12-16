@@ -38,7 +38,7 @@ class OpenAIAsyncClient:
 
     def load_function_prompts(self) -> Dict[str, str]:
         try:
-            with open('/openai_functions/function_prompts.json', 'r') as f:
+            with open('function_prompts.json', 'r') as f:
                 self.function_prompts = json.load(f)
                 logger.info(f"Loaded {len(self.function_prompts)} function prompts")
         except FileNotFoundError:

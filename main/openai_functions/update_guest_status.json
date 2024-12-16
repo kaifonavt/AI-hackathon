@@ -1,0 +1,37 @@
+{
+    "name": "update_guest_status",
+    "description": "Changes the status of guests for a specific holiday event.",
+    "strict": true,
+    "parameters": {
+      "type": "object",
+      "required": [
+        "holiday_id",
+        "guest_ids",
+        "new_status"
+      ],
+      "properties": {
+        "holiday_id": {
+          "type": "integer",
+          "description": "The ID of the holiday event for which guest statuses will be updated."
+        },
+        "guest_names": {
+          "type": "array",
+          "description": "List of guest IDs whose statuses need to be updated.",
+          "items": {
+            "type": "string",
+            "description": "name of a guest."
+          }
+        },
+        "new_status": {
+          "type": "string",
+          "description": "The new status to assign to the specified guests.",
+          "enum": [
+            "present",
+            "absent",
+            "pending"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }

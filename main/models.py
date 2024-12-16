@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, JSON, DateTime, Float, Time
+from sqlalchemy import Column, ForeignKey, Integer, String, JSON, DateTime, Float, Time
 from sqlalchemy.ext.mutable import MutableDict
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.dialects.postgresql import JSONB
@@ -62,3 +62,18 @@ class Restaurant(Base):
 
     def __repr__(self):
         return f"<Restaurant(name='{self.name}', address='{self.address}')>"
+
+
+class Guest(Base):
+    __tablename__ = 'guests'
+    
+    id = Column(Integer, primary_key=True)
+    holiday_id = Column(Integer, ForeignKey('holidays.id', ondelete='CASCADE'), nullable=False)
+    name = Column(String, nullable=False)
+    telegram_id = Column(String, nullable=True)
+    status = Column(String, default='pending')  # present, absent, pending
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+    def __repr__(self):
+        return f"<Guest(id={self.id}, name='{self.name}', status='{self.status}')>"

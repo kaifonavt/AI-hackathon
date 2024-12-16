@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.user.route import router as UserRoute 
 from routes.restaurant.route import router as RestaurantRoute 
+from routes.holiday.route import router as HolidayRoute 
 
 from database import engine, Base
 
@@ -34,6 +35,7 @@ app.add_middleware(
 # Include all routers
 app.include_router(UserRoute)
 app.include_router(RestaurantRoute)
+app.include_router(HolidayRoute)
 
 logger.info("All routers registered successfully")
 
